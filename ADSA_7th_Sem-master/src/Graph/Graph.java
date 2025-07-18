@@ -7,8 +7,8 @@ import java.util.Queue;
 
 public class Graph {
 
-    List<List<Integer>> adjList;
-    int [][] adjMatrix;
+    public List<List<Integer>> adjList;
+    public int [][] adjMatrix;
     List<List<Integer>> edges = new ArrayList<>();
 
     public Graph(int node){
@@ -70,6 +70,8 @@ public class Graph {
         }
     }
 
+
+
     //dfs trvarsal by using adjList
     public void dfsTraversal(int node){
         boolean [] visited = new boolean[adjList.size()];
@@ -112,11 +114,13 @@ public class Graph {
         while(!q.isEmpty()){
             int temp = q.poll();
             System.out.print(temp + " ");
-            for(int node1 : adjList.get(temp)){
-                if(!visited[node1]){
+            for (int node1 : adjList.get(temp)) {
+                if (!visited[node1]) {
+                    visited[node1] = true;
                     q.offer(node1);
                 }
             }
+
         }
     }
 
@@ -145,7 +149,7 @@ public class Graph {
 //        System.out.println();
         System.out.println(edges);
     }
-    void ListDisplay() {
+    public void ListDisplay() {
         for (int i = 0; i < adjList.size(); i++) {
             System.out.print(i + " -> ");
             for (int j = 0; j < adjList.get(i).size(); j++) {
@@ -156,7 +160,7 @@ public class Graph {
         System.out.println();
     }
 
-    void MatrixDisplay() {
+   public void MatrixDisplay() {
         for(int i = 0; i < adjMatrix.length; i++) {
             for (int j = 0; j < adjMatrix[i].length; j++) {
                 System.out.print(adjMatrix[i][j] + " ");
@@ -167,34 +171,51 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-            Graph ob = new Graph(4);
-            ob.addEdgeList(0, 1, true);
-            ob.addEdgeList(0, 2, true);
-            ob.addEdgeList(1, 3, true);
-            ob.addEdgeList(2, 4, true);
+        Graph ob = new Graph(5); // fixed size
 
-            ob.ListDisplay();
+        // Directed graph via adjList
+        ob.addEdgeList(0, 1, true);
+        ob.addEdgeList(0, 2, true);
+        ob.addEdgeList(1, 3, true);
+        ob.addEdgeList(2, 4, true);
+        ob.addEdgeList(3, 4, true);
 
-            ob.MarkadjMatrix(0, 1, true);
-            ob.MarkadjMatrix(0, 2, true);
-            ob.MarkadjMatrix(1, 3, true);
-            ob.MarkadjMatrix(2, 4, true);
-            ob.MatrixDisplay();
+        // Using adjMatrix
+        ob.MarkadjMatrix(0, 1, true);
+        ob.MarkadjMatrix(0, 2, true);
+        ob.MarkadjMatrix(1, 3, true);
+        ob.MarkadjMatrix(2, 4, true);
 
-            ob.edgeList(0, 1);
-            ob.edgeList(0, 2);
-            ob.edgeList(1, 3);
-            ob.edgeList(2, 4);
-            ob.edgeDisplay();
+        // Using edgeList
+        ob.edgeList(0, 1);
+        ob.edgeList(0, 2);
+        ob.edgeList(1, 3);
+        ob.edgeList(2, 4);
 
-            ob.dfsTraversal(0);
-            System.out.println();
+        System.out.println("Adjacency List :");
+        ob.ListDisplay();
 
-            ob.dfsMatrix(0);
+        System.out.println("Adjacency Matrix :");
+        ob.MatrixDisplay();
 
+        System.out.print("Edge List : ");
+        ob.edgeDisplay();
+
+        System.out.print("DFS (List): ");
+        ob.dfsTraversal(0);
         System.out.println();
 
-            ob.bfs(0);
+        System.out.print("DFS (Matrix): ");
+        ob.dfsMatrix(0);
+        System.out.println();
 
+        System.out.print("BFS (List): ");
+        ob.bfs(0);
+        System.out.println();
+
+        System.out.print("BFS (Matrix): ");
+        ob.bfsMatrix(0);
+        System.out.println();
     }
+
 }
