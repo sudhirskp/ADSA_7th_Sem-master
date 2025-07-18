@@ -16,17 +16,18 @@ public class TopoSort {
                 {4, 5}
         };
         Graph graph = new Graph(nodes);
+        TopoSort ts = new TopoSort();
         graph.edgesInGraph(edges, true);
         System.out.print("Topo Sort by using dfs: ");
         topoSort(graph, nodes);
         System.out.println();
         System.out.print("Topo Sort by using bfs- kahn's algo: ");
-        topoSortByKahn(graph, nodes);
+        ts.topoSortByKahn(graph, nodes);
 
     }
 
     //topoSort by using dfs
-    private static void topoSort(Graph graph, int nodes) {
+    public static void topoSort(Graph graph, int nodes) {
 
         boolean visited[] = new boolean[nodes];
         Stack<Integer> stack = new Stack<>();
@@ -53,7 +54,7 @@ public class TopoSort {
 
     //topoSort by using bfs- kahn's algo
 
-    public static void topoSortByKahn(Graph graph, int nodes) {
+    public  void topoSortByKahn(Graph graph, int nodes) {
         int indegree[] = new int[nodes];
         for (int i = 0; i < nodes; i++) {
             for (int j = 0; j < graph.adjMatrix[i].length; j++) {
