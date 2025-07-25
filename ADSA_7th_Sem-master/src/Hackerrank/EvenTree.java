@@ -1,4 +1,4 @@
-package Practice;
+package Hackerrank;
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;

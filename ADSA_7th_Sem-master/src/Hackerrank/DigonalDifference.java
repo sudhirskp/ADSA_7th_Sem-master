@@ -1,4 +1,4 @@
-package Practice;
+package Hackerrank;
 
 import java.util.List;
 
